@@ -1,60 +1,50 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div class="layout">
+    <!-- banner -->
+    <mu-row gutter>
+      <mu-col width="100" tablet="100" desktop="100">
+        <banner></banner>
+      </mu-col>
+    </mu-row>
+    <!-- first -->
+    <mu-row gutter>
+      <mu-col width="100" tablet="80" desktop="60">
+        <transition name="fade" mode="out-in">
+          <keep-alive>
+            <router-view name="first"></router-view>
+          </keep-alive>
+        </transition>
+      </mu-col>
+    </mu-row>
+    <!-- second -->
+    <mu-row gutter>
+      <mu-col width="100" tablet="80" desktop="60">
+        <transition name="fade" mode="out-in">
+          <keep-alive>
+            <router-view name="second"></router-view>
+          </keep-alive>
+        </transition>
+      </mu-col>
+    </mu-row>
+    <!-- third -->
+    <mu-row gutter>
+      <mu-col width="100" tablet="100" desktop="100">
+        <transition name="fade" mode="out-in">
+          <keep-alive>
+            <router-view name="third"></router-view>
+            </keep-alive>
+        </transition>
+      </mu-col>
+    </mu-row>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'app',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
-    }
-  }
-}
-</script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+<style lang="css">
+.layout div[class*="col-"] {
+  margin-left: auto;
+  margin-right: auto;
+  color: #000;
+  padding: 8px;
+  margin-bottom: 8px;
 }
 </style>

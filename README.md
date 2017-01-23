@@ -1,6 +1,6 @@
-# {{ name }}
+# App
 
-> {{ description }}
+> App desc
 
 ## Build Setup
 
