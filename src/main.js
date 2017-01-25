@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import MuseUI from 'muse-ui'
 import Style from './assets/style/muse-ui.css'
 import App from './App.vue'
@@ -11,6 +12,8 @@ import Article from './Article.vue'
 
 Vue.use(MuseUI)
 Vue.use(VueRouter)
+Vue.use(VueResource)
+Vue.http.options.emulateJSON = true;
 
 Vue.component("app", App)
 Vue.component("article-list", ArticleList)

@@ -1,24 +1,23 @@
 <template>
-  <div>
+<div v-if="!loading">
+  <div v-for="item in items">
     <mu-card>
       <mu-card-header title="2017-01-23">
       </mu-card-header>
-      <mu-card-media title="Image Title" subTitle="Image Sub Title">
+      <mu-card-media :title="item.title">
         <img :src="img" />  
       </mu-card-media>
       <!-- <mu-card-title title="Content Title" subTitle="Content Title"/> -->
       <mu-card-text>
-        散落在指尖的阳光，我试着轻轻抓住光影的踪迹，它却在眉宇间投下一片淡淡的阴影。
-        调皮的阳光掀动了四月的心帘，温暖如约的歌声渐起。
-        似乎在诉说着，我也可以在漆黑的角落里，找到阴影背后的阳光，
-        找到阳光与阴影奏出和谐的旋律。我要用一颗敏感赤诚的心迎接每一缕滑过指尖的阳光！
+        {{item.summary}}
       </mu-card-text>
       <mu-card-actions>
-         <router-link to="article/1234567">更多</router-link>
+         <router-link :to="'article/'+item.id">更多</router-link>
         <!-- <mu-flat-button label="阅读更多"/> -->
         <mu-flat-button label="删除"/>
       </mu-card-actions>
     </mu-card>
+  </div>
   </div>
 </template>
 
@@ -28,9 +27,21 @@ import myron from './assets/images/a.jpg'
 export default {
   data () {
     return {
-      img,
-      myron
+      loading: true
     }
-  }
+  },
+  mounted () {
+  this.$http.post('/api/article/list')
+    .then((data) => {
+          this.items = data.body.articles
+          this.img = img;
+          this.myron=myron;
+          this.loading=false
+          console.debug(this.items)
+        }, (err) => {
+
+        }
+      )
+  } 
 }
 </script>
