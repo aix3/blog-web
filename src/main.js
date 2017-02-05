@@ -2,43 +2,17 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import MuseUI from 'muse-ui'
-import Style from './assets/style/muse-ui.css'
-import App from './App.vue'
-import Banner from './Banner.vue'
-import ArticleList from './ArticleList.vue'
-import Pagination from './Pagination.vue'
-import Footer from './Footer.vue'
-import Article from './Article.vue'
+import _ from './assets/style/muse-ui.css'
+import { blogRoutes } from './blog'
+import { adminRoutes } from './admin'
 
 Vue.use(MuseUI)
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.http.options.emulateJSON = true;
 
-Vue.component("app", App)
-Vue.component("article-list", ArticleList)
-Vue.component("pagination", Pagination)
-Vue.component("banner", Banner)
-Vue.component("my-footer", Footer)
-Vue.component("my-article", Article)
 
-const routes = [
-	{ 
-		path: '/', 
-		components: {
-			first: ArticleList,
-			second: Pagination,
-			third: Footer
-		}
-	},
-	{ 
-		path: '/article/:id', 
-		components: {
-	    	first: Article,
-	    	third: Footer
-		}
-	}
-]
+const routes = blogRoutes.concat(adminRoutes)
 
 const router = new VueRouter({ routes: routes })
 
